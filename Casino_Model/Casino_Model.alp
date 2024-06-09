@@ -3678,6 +3678,27 @@ agent.queueStartTime = 0;]]></Code>
 										</GenericParameterSubstituteReference>
 									</GenericParameterSubstitute>
 									<Parameters>
+										<Parameter>
+											<Name><![CDATA[riskAversion]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[startMoney]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[money]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[returnChance]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[time]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[hasLoan]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[queueStartTime]]></Name>
+										</Parameter>
 									</Parameters>
 									<ReplicationFlag>true</ReplicationFlag>
 									<Replication Class="CodeValue">
@@ -4057,6 +4078,27 @@ agent.hasLoan = false;]]></Code>
 										</GenericParameterSubstituteReference>
 									</GenericParameterSubstitute>
 									<Parameters>
+										<Parameter>
+											<Name><![CDATA[riskAversion]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[startMoney]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[money]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[returnChance]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[time]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[hasLoan]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[queueStartTime]]></Name>
+										</Parameter>
 									</Parameters>
 									<ReplicationFlag>true</ReplicationFlag>
 									<Replication Class="CodeValue">
@@ -4313,6 +4355,27 @@ agent.returnChance = returnChance;]]></Code>
 										</GenericParameterSubstituteReference>
 									</GenericParameterSubstitute>
 									<Parameters>
+										<Parameter>
+											<Name><![CDATA[riskAversion]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[startMoney]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[money]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[returnChance]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[time]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[hasLoan]]></Name>
+										</Parameter>
+										<Parameter>
+											<Name><![CDATA[queueStartTime]]></Name>
+										</Parameter>
 									</Parameters>
 									<ReplicationFlag>true</ReplicationFlag>
 									<Replication Class="CodeValue">
@@ -5412,6 +5475,19 @@ agent.money += casinoLoan;]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[double rate = (agent.money / agent.startMoney) + 0.5;
+
+if (rate < 0) {
+	rate = 0.01;
+}
+
+agent.returnChance *= rate;
+
+if (agent.returnChance < 0.01) {
+	agent.returnChance = 0.01;
+}]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExitTimeout]]></Name>
@@ -12710,17 +12786,17 @@ if (bestInfeasibleObjective != Double.NEGATIVE_INFINITY) {
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
+			<Path><![CDATA[smooth_bets_huge_freq_high.xlsx]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
 			<Path><![CDATA[smooth_bets_huge_freq_low.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
 			<Path><![CDATA[smooth_bets_huge_freq_med.xlsx]]></Path>
-			<ReferencedFromUserCode>false</ReferencedFromUserCode>
-			<Location>FILE_SYSTEM</Location>
-		</Resource>
-		<Resource>
-			<Path><![CDATA[smooth_bets_huge_freq_high.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
